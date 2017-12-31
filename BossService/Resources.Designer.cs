@@ -61,7 +61,8 @@ namespace BossService {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This book is largely concerned with Hobbits, and from its pages a reader may discover much of their character and a little of their history. Further information will also be found in the selection from the Red Book of Westmarch that has already been published, under the title of _The Hobbit_. That story was derived from the earlier chapters of the Red Book, composed by Bilbo himself, the first Hobbit to become famous in the world at large, and called by him _There and Back Again,_ since they told of his jou [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton.
+        ///Bilbo was very rich and very peculiar, and had been the wonder of the Shire for sixty years, ever since his remarkable disappearance and unexpected return. The riches he had brought back from his travels had now become a local legend, and it was popularly believed, whatever the old folk might say, that the Hill at  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Fellowship {
             get {
