@@ -25,7 +25,7 @@ namespace BossService.Controllers
                     var s = "";
                     if (CheckIfHoliday((Holidays)val))
                     {
-                        s = "It is currently " + val;
+                        s = "It is currently " + val + "!!!";
                     }
                     else
                     {
@@ -54,9 +54,39 @@ namespace BossService.Controllers
         }
 
         // GET: api/IsItHoliday/5
-        public string Get(int id)
+        public GenericRestResponse Get(int id)
         {
-            return "value";
+            try
+            {
+                bool succ = CheckIfHoliday((Holidays)id);
+                var s = "";
+
+                if (succ)
+                {
+                    s = "It is currently " + (Holidays)id + "!!!";
+                }
+                else
+                {
+                    s = "It is not currently " + (Holidays)id;
+                }
+                return new GenericRestResponse
+                {
+                    Success = true,
+                    Response = s
+                };
+            }
+            catch(Exception e)
+            {
+                return new GenericRestResponse
+                {
+                    Success = false,
+                    Response = new GenericRestError
+                    {
+                        Exception = e,
+                        HumanMessage = "Something went wrong...Please try again."
+                    }
+                };
+            }
         }
 
         // POST: api/IsItHoliday
@@ -76,7 +106,7 @@ namespace BossService.Controllers
 
         private static bool CheckIfHoliday(Holidays holiday)
         {
-            Regex r = new Regex("");
+            Regex r = new Regex("a");
             string p;
 
             switch (holiday)
@@ -90,19 +120,22 @@ namespace BossService.Controllers
                     r = new Regex(p);
                     break;
                 case Holidays.VALDAY:
-                    p = @"02/14/\d\d\d\d .*";
+                    p = @"2/14/\d\d\d\d .*";
                     r = new Regex(p);
                     break;
                 case Holidays.NEWYEARS:
-                    p = @"01/01/\d\d\d\d .*";
+                    p = @"1/1/\d\d\d\d .*";
                     r = new Regex(p);
                     break;
                 case Holidays.JULYFOUR:
-                    p = @"07/04/\d\d\d\d .*";
+                    p = @"7/4/\d\d\d\d .*";
                     r = new Regex(p);
                     break;
             }
-
+            if(r.IsMatch("a"))
+            {
+                throw new Exception("Please pass in a valid Holiday Id. 0-4 are currently supported.");
+            }
             if (r.IsMatch(DateTime.Now.ToString()))
             {
                 return true;

@@ -161,7 +161,7 @@ namespace BossService.Controllers
 		// GET: api/RandomSentences/5
 		public string Get(int id)
 		{
-			return "value";
+			return "That method is not currently supported, sorry. Take the id off your url for a random sentence.";
 		}
 
 		// POST: api/RandomSentences
